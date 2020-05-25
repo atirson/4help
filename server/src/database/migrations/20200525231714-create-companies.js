@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('voluntaries', {
+    return queryInterface.createTable('companies', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -16,9 +16,9 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      linkedin: {
+      cnpj: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       password_hash: {
         type: Sequelize.STRING,
@@ -36,6 +36,6 @@ module.exports = {
   },
 
   down: queryInterface => {
-    return queryInterface.dropTable('voluntaries');
+    return queryInterface.dropTable('companies');
   },
 };
