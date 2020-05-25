@@ -1,8 +1,10 @@
 import Sequelize from 'sequelize';
 
+import Vonlutary from '../app/models/Vonlutary';
+
 import databaseConfig from '../config/database';
 
-const models = [];
+const models = [Vonlutary];
 
 class Database {
   constructor() {
