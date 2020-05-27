@@ -1,10 +1,11 @@
 import Sequelize from 'sequelize';
 
 import Voluntary from '../app/models/Voluntary';
+import Company from '../app/models/Company';
 
 import databaseConfig from '../config/database';
 
-const models = [Voluntary];
+const models = [Voluntary, Company];
 
 class Database {
   constructor() {
