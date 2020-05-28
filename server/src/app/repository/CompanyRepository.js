@@ -1,22 +1,23 @@
 import Company from '../models/Company';
-const { Op } = require("sequelize");
+
+const { Op } = require('sequelize');
 
 class CompanyRepository {
-    async getCompanyByEmailOrCnpj(email, cnpj) {
-        const companyExists = await Company.findOne({
-            where: {[Op.or]: [{ email }, { cnpj }],
-          }});
+  async getCompanyByEmailOrCnpj(email, cnpj) {
+    const companyExists = await Company.findOne({
+      where: { [Op.or]: [{ email }, { cnpj }] },
+    });
 
-        return companyExists;
-    }
+    return companyExists;
+  }
 
-    async getCompanySameCnpj(id, cnpj) {    
-      const cnpjExists = await Company.findOne({
-        where: { [Op.notIn]: id }, cnpj
-      });
+  async getCompanySameCnpjEmail(id, cnpj, email) {
+    const cnpjExists = await Company.findAll({
+      where: { id: { [Op.not]: id }, cnpj, email },
+    });
 
-      return cnpjExists;
-    }
+    return cnpjExists;
+  }
 }
 
 export default new CompanyRepository();

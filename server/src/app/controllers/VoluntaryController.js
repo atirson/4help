@@ -1,35 +1,38 @@
 import Voluntary from '../models/Voluntary';
+
 class VoluntaryController {
-   async index(req, res) {
-     const { page = 1 } = req.query;
+  async index(req, res) {
+    const { page = 1 } = req.query;
 
-     const voluntary = await Voluntary.findAll({
-       attributes: ['id', 'name', 'email'],
-       limit: 20,
-       offset: (page - 1) * 20,
-     });
+    const voluntary = await Voluntary.findAll({
+      attributes: ['id', 'name', 'email'],
+      limit: 20,
+      offset: (page - 1) * 20,
+    });
 
-     return res.json(voluntary);
-   }
+    return res.json(voluntary);
+  }
 
   async store(req, res) {
-    const {id, name, email, linkedin, password_hash} = await Voluntary.create(req.body);
+    const { id, name, email, linkedin, password_hash } = await Voluntary.create(
+      req.body
+    );
 
     return res.json({
-        id, 
-        name, 
-        email, 
-        linkedin, 
-        password_hash
+      id,
+      name,
+      email,
+      linkedin,
+      password_hash,
     });
   }
 
   async update(req, res) {
     const voluntary = await Voluntary.findByPk(req.body.id);
-    
-    const { id, name, email, linkedin} = await voluntary.update(req.body);
 
-    return res.json({ id, name, email, linkedin});
+    const { id, name, email, linkedin } = await voluntary.update(req.body);
+
+    return res.json({ id, name, email, linkedin });
   }
 
   async delete(req, res) {

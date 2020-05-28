@@ -1,36 +1,38 @@
 import Company from '../models/Company';
 
 class CompanyController {
-   async index(req, res) {
-     const { page = 1 } = req.query;
+  async index(req, res) {
+    const { page = 1 } = req.query;
 
-     const company = await Company.findAll({
-       attributes: ['id', 'name', 'email', 'cnpj'],
-       limit: 20,
-       offset: (page - 1) * 20,
-     });
+    const company = await Company.findAll({
+      attributes: ['id', 'name', 'email', 'cnpj'],
+      limit: 20,
+      offset: (page - 1) * 20,
+    });
 
-     return res.json(company);
-   }
+    return res.json(company);
+  }
 
   async store(req, res) {
-    const {id, name, email, cnpj, password_hash} = await Company.create(req.body);
+    const { id, name, email, cnpj, password_hash } = await Company.create(
+      req.body
+    );
 
     return res.json({
-        id, 
-        name, 
-        email, 
-        cnpj, 
-        password_hash
+      id,
+      name,
+      email,
+      cnpj,
+      password_hash,
     });
   }
 
   async update(req, res) {
     const company = await Company.findByPk(req.body.id);
 
-    await company.update(req.body);
+    const { id, name, email, cnpj } = await company.update(req.body);
 
-    return res.json({ id, name, email, cnpj});
+    return res.json({ id, name, email, cnpj });
   }
 
   async delete(req, res) {
