@@ -7,7 +7,7 @@ import CompanyBO from './app/service/CompanyBO';
 
 const routes = new Router();
 
-routes.get('/', (req, res) => res.json({ message: 'Welcome to Omni CLI' }));
+routes.get('/', (req, res) => res.json({ message: 'Welcome to 4Help' }));
 
 routes.post('/voluntary', VoluntaryBO.validateStore, VoluntaryController.store);
 routes.put(
