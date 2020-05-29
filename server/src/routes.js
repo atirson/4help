@@ -10,10 +10,13 @@ const routes = new Router();
 routes.get('/', (req, res) => res.json({ message: 'Welcome to Omni CLI' }));
 
 routes.post('/voluntary', VoluntaryBO.validateStore, VoluntaryController.store);
-routes.put('/voluntary', VoluntaryBO.validateUpdate, VoluntaryController.update);
+routes.put(
+  '/voluntary',
+  VoluntaryBO.validateUpdate,
+  VoluntaryController.update
+);
 routes.get('/voluntary', VoluntaryController.index);
 routes.delete('/voluntary', VoluntaryController.delete);
-
 
 routes.post('/company', CompanyBO.validateStore, CompanyController.store);
 routes.put('/company', CompanyBO.validateUpdate, CompanyController.update);
