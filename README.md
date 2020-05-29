@@ -19,3 +19,5 @@ Enter the project server folder:  ```yarn``` or ```npm install``` and after ```y
 <h2>Routes</h2>
 
 Route => ```http://localhost:3333``` this return <b>Welcome to 4Help</b>
+
+You can import file of <b>Insomnia</b> => 'insomnia.json'. 
