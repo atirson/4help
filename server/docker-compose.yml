@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  help-nodejs:
+    container_name: help
+    build: .
+    entrypoint: ['./init.sh']
+    volumes:
+      - .:/home/node/api
+      - /home/node/api/node_modules
+    depends_on:
+      - help-postgres
+    networks:
+      - app-connect
+    ports:
+      - '3333:3333'
+
+  help-postgres:
+    container_name: help-postgres
+    image: postgres:11
+    volumes:
+      - help-postgres-data:/data
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    networks:
+      - app-connect
+    ports:
+      - '5432:5432'
+
+volumes:
+  help-postgres-data:
+
+networks:
+  app-connect:
+      driver: bridge
